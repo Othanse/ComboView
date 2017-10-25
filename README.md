@@ -17,8 +17,8 @@
 <br/>
 方法参数：<br/>
 ```
-    public void setComboListener(ComboListener comboListener): 设置连击监听
 
+    public void setComboListener(ComboListener comboListener): 设置连击监听
 
     public interface ComboListener {
         /**
