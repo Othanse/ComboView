@@ -5,20 +5,20 @@
 
 基本使用：<br/>
 1.布局文件引用<br/>
-`
+```
   <com.example.eagleweb.combobutton.ComboTextView
             android:id="@+id/combo"
             android:layout_width="96dp"
             android:layout_height="30dp"
             android:layout_centerInParent="true"/>
- `
+ ```
  <br/>
 2.Java代码创建对象
 
 
 <br/>
 方法：<br/>
-`
+```
   public void setComboListener(ComboListener comboListener): 设置连击监听
 
 
@@ -46,4 +46,4 @@
      */
     public void setType(int type)
     
- `
+ ```
