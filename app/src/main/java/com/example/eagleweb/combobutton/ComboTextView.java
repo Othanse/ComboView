@@ -117,6 +117,11 @@ public class ComboTextView extends RelativeLayout {
                                     @Override
                                     public void run() {
                                         if (progress <= 0) {
+                                            if (mTimer == null) {
+                                                // 这里不能删，因为上面有一个等待时间，肯定会出现已经执行过这里的情况的
+                                                return;
+                                            }
+                                            System.out.println(" come 告诉我为啥执行两次： " + progress);
                                             if (mComboListener != null) {
                                                 mComboListener.comboOver(comboCount);
                                             }
@@ -168,8 +173,19 @@ public class ComboTextView extends RelativeLayout {
     }
 
     public interface ComboListener {
+        /**
+         * 点击事件回调
+         *
+         * @param isCombo    该次点击是否是连击
+         * @param comboCount 连击次数
+         */
         void click(boolean isCombo, int comboCount);
 
+        /**
+         * 连击结束
+         *
+         * @param comboCount 连击次数
+         */
         void comboOver(int comboCount);
     }
 
