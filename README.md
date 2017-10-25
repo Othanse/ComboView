@@ -3,7 +3,7 @@
 
 直播送礼连击功能
 
-基本使用：<br/>
+### 基本使用：<br/>
 1.布局文件引用<br/>
 ```
   <com.example.eagleweb.combobutton.ComboTextView
@@ -15,7 +15,7 @@
  <br/>
 2.Java代码创建对象
 <br/>
-方法参数：<br/>
+### 方法参数：<br/>
 
 ```
       public void setComboListener(ComboListener comboListener): 设置连击监听
