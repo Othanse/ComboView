@@ -109,6 +109,7 @@ public class ComboTextView extends RelativeLayout {
                         }
 
                         progress = 60;
+                        --progress;
                         mTimer.schedule(new TimerTask() {
                             @Override
                             public void run() {
@@ -121,7 +122,6 @@ public class ComboTextView extends RelativeLayout {
                                                 // 这里不能删，因为上面有一个等待时间，肯定会出现已经执行过这里的情况的
                                                 return;
                                             }
-                                            System.out.println(" come 告诉我为啥执行两次： " + progress);
                                             if (mComboListener != null) {
                                                 mComboListener.comboOver(comboCount);
                                             }
@@ -224,10 +224,11 @@ public class ComboTextView extends RelativeLayout {
     public void setState(int state) {
         switch (state) {
             case 1:
-                canClick = true;
+                canClick = false;
                 // 不可点击状态
                 if (mTimer != null) {
                     mTimer.cancel();
+                    mTimer = null;
                 }
                 mTvTime.setText("发送");
                 mTvTime.setTextColor(Color.parseColor("#a7acb2"));
@@ -244,9 +245,10 @@ public class ComboTextView extends RelativeLayout {
                 break;
             case 2:
                 // 可点击状态
-                canClick = false;
+                canClick = true;
                 if (mTimer != null) {
                     mTimer.cancel();
+                    mTimer = null;
                 }
                 mTvTime.setText("发送");
                 mTvTime.setTextColor(Color.parseColor("#ffffff"));
@@ -263,6 +265,21 @@ public class ComboTextView extends RelativeLayout {
                 break;
             default:
                 break;
+        }
+    }
+
+    /**
+     * 取消 不会回调任何方法
+     */
+    public void cancel() {
+        if (mTimer != null) {
+            mTimer.cancel();
+            mTimer = null;
+        }
+        comboCount = 0;
+        progress = 0;
+        if (mCountdown != null) {
+            mCountdown.setProgress(progress);
         }
     }
 
