@@ -125,6 +125,7 @@ public class ComboTextView extends RelativeLayout {
                                             if (mComboListener != null) {
                                                 mComboListener.comboOver(comboCount);
                                             }
+                                            comboCount = 0;
                                             if (mTimer != null) {
                                                 mTimer.cancel();
                                                 mTimer = null;
@@ -231,6 +232,15 @@ public class ComboTextView extends RelativeLayout {
                 mTvTime.setText("发送");
                 mTvTime.setTextColor(Color.parseColor("#a7acb2"));
                 mCountdown.setBackgroundColor(Color.parseColor("#ee000000"));
+                if (progress > 0 && progress < 60) {
+                    // 还在连击状态
+                    if (mComboListener != null) {
+                        mComboListener.comboOver(comboCount);
+                    }
+                    comboCount = 0;
+                    progress = 0;
+                    mCountdown.setProgress(progress);
+                }
                 break;
             case 2:
                 // 可点击状态
@@ -241,6 +251,15 @@ public class ComboTextView extends RelativeLayout {
                 mTvTime.setText("发送");
                 mTvTime.setTextColor(Color.parseColor("#ffffff"));
                 mCountdown.setBackgroundColor(Color.parseColor("#12b06b"));
+                if (progress > 0 && progress < 60) {
+                    // 还在连击状态
+                    if (mComboListener != null) {
+                        mComboListener.comboOver(comboCount);
+                    }
+                    comboCount = 0;
+                    progress = 0;
+                    mCountdown.setProgress(progress);
+                }
                 break;
             default:
                 break;
